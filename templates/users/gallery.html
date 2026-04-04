@@ -1,0 +1,67 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+{% block bg_image %}{% static 'img/agri_tech_bg.png' %}{% endblock %}
+{% block contents %}
+
+<div class="container py-5">
+    <div class="glass-panel w-100 mb-5">
+        <h2 class="page-title text-success border-bottom border-success pb-3">
+            <i class="bi bi-images me-2"></i> Gallery - Previous Predictions
+        </h2>
+        
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-4">
+            {% for pred in predictions %}
+            <div class="col">
+                <div class="card bg-transparent border-light border-opacity-25 shadow h-100 overflow-hidden" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.05) !important;">
+                    <div class="position-relative">
+                        <img src="{{ pred.image.url }}" class="card-img-top" alt="Prediction Image" style="height: 200px; object-fit: cover;">
+                        <span class="position-absolute top-0 end-0 m-2 badge 
+                            {% if pred.category == 'Harmful' %}bg-danger{% elif pred.category == 'Beneficial' %}bg-success{% else %}bg-secondary{% endif %} rounded-pill px-3 py-2">
+                            {{ pred.category }}
+                        </span>
+                    </div>
+                    <div class="card-body text-light">
+                        <p class="card-text small opacity-75 mb-2">
+                            <i class="bi bi-calendar3 me-1"></i> {{ pred.created_at|date:"M d, Y H:i" }}
+                        </p>
+                        
+                        {% if pred.category == 'Harmful' %}
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-between mb-1 small">
+                                <span class="text-danger">Harmfulness</span>
+                                <span class="text-danger fw-bold">{{ pred.harmful_percentage }}%</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 6px; background: rgba(255,255,255,0.1);">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ pred.harmful_percentage }}%;"></div>
+                            </div>
+                            <div class="mt-2 p-2 rounded-2" style="background: rgba(40, 167, 69, 0.1); border: 1px solid rgba(40, 167, 69, 0.15);">
+                                <p class="mb-0 small" style="font-size: 0.75rem;">
+                                    <span class="text-success fw-bold text-uppercase d-block mb-1" style="letter-spacing: 0.5px;">Eco-Solution</span>
+                                    <span class="text-light opacity-75">{{ pred.eco_solution }}</span>
+                                </p>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="mt-3 p-2 rounded-2" style="background: rgba(40, 167, 69, 0.05);">
+                            <p class="mb-0 small text-success" style="font-size: 0.75rem;">
+                                <i class="bi bi-check-circle-fill me-1"></i> Beneficial for your crops.
+                            </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <div class="opacity-50">
+                    <i class="bi bi-camera-fill text-light mb-3" style="font-size: 3rem;"></i>
+                    <h4 class="text-light">No predictions yet</h4>
+                    <p class="text-light">Upload an image in the Prediction section to see it here.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

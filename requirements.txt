@@ -1,0 +1,7 @@
+Django==5.2
+matplotlib==3.10.1
+pillow==11.2.1
+torch==2.6.0
+torchvision==0.21.0
+gunicorn>=21.2.0
+whitenoise>=6.6.0

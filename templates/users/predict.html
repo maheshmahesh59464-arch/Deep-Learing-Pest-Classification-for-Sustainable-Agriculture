@@ -1,0 +1,96 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+{% block bg_image %}{% static 'img/glass_bg_predict.png' %}{% endblock %}
+{% block contents %}
+
+<div class="container-fluid py-5 d-flex align-items-center justify-content-center min-vh-100">
+    <div class="glass-panel text-center w-100" style="max-width: 550px;">
+        <h2 class="page-title text-success mb-4 border-bottom border-success pb-3 d-inline-block">
+            <i class="bi bi-cloud-arrow-up me-2"></i> Upload Image
+        </h2>
+        
+        <form method="POST" enctype="multipart/form-data" class="mt-4">
+            {% csrf_token %}
+            
+            <div class="mb-5 d-flex flex-column align-items-center">
+                {{ form.as_p }}
+                <label for="id_image" class="form-label text-light opacity-75 small">Supported formats: JPG, PNG</label>
+            </div>
+            
+            <div class="d-grid gap-2 col-8 mx-auto">
+                <button class="btn btn-glass btn-lg" type="submit">
+                    <i class="bi bi-magic me-2"></i> Predict
+                </button>
+            </div>
+        </form>
+
+        {% if image_url %}
+        <div class="mt-4 pt-3 border-top border-light border-opacity-10">
+            <h5 class="text-light mb-3 opacity-75 small text-uppercase tracking-wider">Uploaded Image</h5>
+            <div class="rounded-3 overflow-hidden shadow-lg border border-light border-opacity-25 mx-auto" style="max-width: 300px;">
+                <img src="{{ image_url }}" class="img-fluid w-100" alt="Uploaded File" style="max-height: 250px; object-fit: cover;">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if prediction %}
+        <div class="mt-5 pt-4 border-top border-light border-opacity-25">
+            <h4 class="text-light mb-3">Predicted Class: <span class="text-info">{{ prediction }}</span></h4>
+            <h5 class="text-light">
+                Category: 
+                {% if category == 'Harmful' %}
+                    <span class="badge bg-danger shadow-sm px-3 py-2 ms-2 fs-6 rounded-pill"><i class="bi bi-exclamation-triangle-fill me-1"></i> {{ category }}</span>
+                {% elif category == 'Beneficial' %}
+                    <span class="badge bg-success shadow-sm px-3 py-2 ms-2 fs-6 rounded-pill"><i class="bi bi-shield-check me-1"></i> {{ category }}</span>
+                {% else %}
+                    <span class="badge bg-secondary shadow-sm px-3 py-2 ms-2 fs-6 rounded-pill"><i class="bi bi-patch-question me-1"></i> {{ category }}</span>
+                {% endif %}
+            </h5>
+
+            {% if category == 'Harmful' %}
+            <div class="mt-4 p-3 rounded-3" style="background: rgba(220, 53, 69, 0.1); border: 1px solid rgba(220, 53, 69, 0.2);">
+                <h6 class="text-danger fw-bold mb-2"><i class="bi bi-graph-up-arrow me-2"></i> Harmfulness Level: {{ harmful_percentage }}%</h6>
+                <div class="progress mb-3" style="height: 10px; background: rgba(255,255,255,0.1);">
+                    <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ harmful_percentage }}%;"></div>
+                </div>
+                <div class="text-start mt-3">
+                    <p class="text-light mb-1 small opacity-75 text-uppercase tracking-wider fw-bold">Eco-friendly Solution:</p>
+                    <p class="text-info mb-0"><i class="bi bi-leaf-fill me-2 text-success"></i> {{ eco_solution }}</p>
+                </div>
+            </div>
+            {% elif category == 'Beneficial' %}
+            <div class="mt-4 p-3 rounded-3" style="background: rgba(40, 167, 69, 0.1); border: 1px solid rgba(40, 167, 69, 0.2);">
+                <p class="text-light mb-0"><i class="bi bi-info-circle-fill me-2 text-success"></i> {{ eco_solution }}</p>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    /* target dynamically rendered form elements */
+    input[type="file"] {
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+        border: 1px dashed rgba(40, 167, 69, 0.5);
+        padding: 15px;
+        border-radius: 8px;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    input[type="file"]:hover {
+        background: rgba(40, 167, 69, 0.1);
+        border-color: #28a745;
+    }
+    form p {
+        width: 100%;
+        margin-bottom: 0;
+    }
+    form p label {
+        display: none;
+    }
+</style>
+
+{% endblock %}

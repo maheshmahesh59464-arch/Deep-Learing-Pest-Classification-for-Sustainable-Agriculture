@@ -1,0 +1,233 @@
+/* Glassmorphism CSS Framework for Pest Classifier */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #28a745;
+  --primary-hover: #218838;
+  --secondary-color: #f3f4f6;
+  --background-overlay: rgba(0, 0, 0, 0.45);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --text-primary: #ffffff;
+  --text-secondary: #d1d5db;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  /* You can keep the original background or use a new dynamic gradient/image */
+  background: linear-gradient(135deg, #1f4037, #99f2c8);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  color: #fff;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  min-width: 260px;
+  width: 260px;
+  background: rgba(10, 20, 15, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 25px 20px;
+  position: fixed;
+  height: 100vh;
+  border-right: 1px solid var(--glass-border);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  font-weight: 700;
+  color: #a7f3d0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  text-shadow: 0 2px 10px rgba(167, 243, 208, 0.3);
+}
+
+.sidebar .nav-link {
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+  background: rgba(40, 167, 69, 0.2);
+  color: #6ee7b7;
+  border-color: rgba(40, 167, 69, 0.4);
+  transform: translateX(5px);
+}
+
+/* Content Area */
+.content {
+  flex-grow: 1;
+  padding: 40px;
+  margin-left: 260px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Custom Buttons */
+.btn-glass {
+  background: rgba(40, 167, 69, 0.7);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(40, 167, 69, 0.5);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-glass:hover {
+  background: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+  color: white;
+}
+
+/* Form Styles */
+.form-control-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 8px;
+  padding: 12px 15px;
+  transition: all 0.3s ease;
+}
+
+.form-control-glass:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #6ee7b7;
+  box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.25);
+  color: white;
+}
+
+.form-control-glass::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  color: #e5e7eb;
+}
+
+/* Typography Enhancements */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+.page-title {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Tables */
+.table-glass {
+  width: 100%;
+  color: white;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-glass th {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.table-glass td {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table-glass tr:hover td {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Alerts and Messages */
+.alert-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 8px;
+}
+
+/* Auth Container */
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+/* Messages */
+.messages {
+  margin-bottom: 20px;
+}
+.messages li {
+  list-style: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(40, 167, 69, 0.8);
+  color: white;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 15px;
+  }
+  .content {
+    margin-left: 0;
+    padding: 20px;
+  }
+}

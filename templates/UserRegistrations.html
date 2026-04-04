@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block bg_image %}{% static 'img/glass_bg_auth.png' %}{% endblock %}
+{% block contents %}
+
+<section class="content w-100 py-5">
+    <div class="glass-panel text-start container" style="max-width: 800px;">
+        <h2 class="page-title text-success text-center mb-4"><i class="bi bi-person-plus-fill me-2"></i> Register Here</h2>
+        
+        {% if messages %}
+        <div class="mb-4">
+            {% for message in messages %}
+            <div class="alert alert-glass alert-success alert-dismissible fade show text-center" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i> {{ message }}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form action="{% url 'UserRegisterForm' %}" method="post">
+            {% csrf_token %}
+            <div class="row g-3">
+                <div class="col-md-6 mb-3">
+                    <label for="name" class="form-label"><i class="bi bi-person me-1"></i> Full Name</label>
+                    <input type="text" class="form-control form-control-glass" id="name" name="name" maxlength="100" required placeholder="John Doe">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="loginid" class="form-label"><i class="bi bi-person-badge me-1"></i> Login ID</label>
+                    <input type="text" class="form-control form-control-glass" id="loginid" name="loginid" maxlength="100" required placeholder="johndoe123">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="password" class="form-label"><i class="bi bi-lock me-1"></i> Password</label>
+                    <input type="password" class="form-control form-control-glass" id="password" name="password" maxlength="100" required placeholder="Secure Password">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="mobile" class="form-label"><i class="bi bi-phone me-1"></i> Mobile</label>
+                    <input type="text" class="form-control form-control-glass" id="mobile" name="mobile" maxlength="10" required placeholder="1234567890">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label"><i class="bi bi-envelope me-1"></i> Email</label>
+                    <input type="email" class="form-control form-control-glass" id="email" name="email" maxlength="100" required placeholder="john@example.com">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="locality" class="form-label"><i class="bi bi-geo-alt me-1"></i> Locality</label>
+                    <input type="text" class="form-control form-control-glass" id="locality" name="locality" maxlength="100" placeholder="Downtown">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="address" class="form-label"><i class="bi bi-house me-1"></i> Address</label>
+                    <textarea class="form-control form-control-glass" id="address" name="address" maxlength="1000" rows="3" placeholder="Full street address"></textarea>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label for="city" class="form-label"><i class="bi bi-building me-1"></i> City</label>
+                    <input type="text" class="form-control form-control-glass" id="city" name="city" maxlength="100" placeholder="New York">
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label for="state" class="form-label"><i class="bi bi-map me-1"></i> State</label>
+                    <input type="text" class="form-control form-control-glass" id="state" name="state" maxlength="100" placeholder="NY">
+                </div>
+                
+                <div class="col-12 text-center mt-2">
+                    <button type="submit" class="btn btn-glass btn-lg px-5">
+                        <i class="bi bi-check2-circle me-2"></i> Register Account
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

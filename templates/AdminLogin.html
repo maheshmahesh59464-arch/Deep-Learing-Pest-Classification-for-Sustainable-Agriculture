@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block bg_image %}{% static 'img/glass_bg_auth.png' %}{% endblock %}
+{% block contents %}
+
+<section class="content d-flex justify-content-center align-items-center min-vh-100 w-100">
+    <div class="glass-panel text-center auth-container">
+        <h2 class="page-title" style="color:#FFA500;"><i class="bi bi-shield-lock me-2"></i> Admin Login</h2>
+        
+        <form action="AdminLogincheck" method="POST" class="mt-4 text-start">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="loginid" class="form-label">Login ID</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-warning text-warning"><i class="bi bi-person"></i></span>
+                    <input type="text" class="form-control form-control-glass border-warning" name="loginid" id="loginid" required placeholder="Enter Login ID">
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <label for="pswd" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-warning text-warning"><i class="bi bi-lock"></i></span>
+                    <input type="password" class="form-control form-control-glass border-warning" name="pswd" id="pswd" required placeholder="Enter Password">
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-between gap-3 mb-3">
+                <button class="btn btn-glass w-50 border-warning text-warning shadow-none" style="background: rgba(255, 165, 0, 0.2);" type="submit">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Login
+                </button>
+                <button class="btn btn-glass w-50 border-secondary text-secondary shadow-none" style="background: rgba(108, 117, 125, 0.2);" type="reset">
+                    <i class="bi bi-arrow-counterclockwise me-2"></i> Reset
+                </button>
+            </div>
+            
+            {% if messages %}
+            <div class="mt-4">
+                {% for message in messages %}
+                <div class="alert alert-glass border-warning text-warning alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-2"></i> {{ message }}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</section>
+
+{% endblock %}

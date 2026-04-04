@@ -1,0 +1,68 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+{% block bg_image %}{% static 'img/glass_bg_predict.png' %}{% endblock %}
+{% block contents %}
+
+<div class="container-fluid py-5 d-flex align-items-center justify-content-center min-vh-100">
+    <div class="glass-panel text-center w-100" style="max-width: 700px;">
+        <h2 class="page-title text-success border-bottom border-success pb-3 d-inline-block">
+            <i class="bi bi-cpu me-2"></i> Train Pest Model
+        </h2>
+        
+        <form method="POST" class="mt-4 px-4">
+            {% csrf_token %}
+            <p class="lead text-light opacity-75 mb-4" style="font-size: 1.1rem;">
+                Our ResNet18 Machine Learning model is pre-trained. Click the button below to fine-tune the model with the latest dataset and regenerate accuracy metrics.
+            </p>
+            <button class="btn btn-glass btn-lg mb-4 hover-scale" type="submit">
+                <i class="bi bi-play-circle me-2"></i> Start Training Process
+            </button>
+        </form>
+
+        {% if plot_path %}
+        <div class="mt-5 pt-4 border-top border-light border-opacity-25 animated fadeIn">
+            <h3 class="text-success mb-4"><i class="bi bi-graph-up me-2"></i> Training Results</h3>
+            
+            <div class="bg-light bg-opacity-10 p-2 rounded-3 shadow-sm mb-4 border border-light border-opacity-25 inline-block">
+                <img src="{% static plot_path %}" alt="Training Graph" class="img-fluid rounded border border-secondary border-opacity-50">
+            </div>
+
+            <div class="row text-center mt-4">
+                <div class="col-md-4 mb-3">
+                    <div class="bg-dark bg-opacity-25 p-3 rounded-3 border border-success border-opacity-25">
+                        <small class="text-light opacity-75 d-block text-uppercase letter-spacing">Train Accuracy</small>
+                        <span class="fs-4 fw-bold text-success">{{ train_accuracy|floatformat:2 }}%</span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="bg-dark bg-opacity-25 p-3 rounded-3 border border-info border-opacity-25">
+                        <small class="text-light opacity-75 d-block text-uppercase letter-spacing">Val Accuracy</small>
+                        <span class="fs-4 fw-bold text-info">{{ val_accuracy|floatformat:2 }}%</span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="bg-dark bg-opacity-25 p-3 rounded-3 border border-warning border-opacity-25">
+                        <small class="text-light opacity-75 d-block text-uppercase letter-spacing">Loss</small>
+                        <span class="fs-4 fw-bold text-warning">{{ loss|floatformat:4 }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .animated.fadeIn {
+        animation: fadeIn 0.8s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .letter-spacing {
+        letter-spacing: 1px;
+    }
+</style>
+
+{% endblock %}

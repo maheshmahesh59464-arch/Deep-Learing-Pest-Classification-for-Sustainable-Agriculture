@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block bg_image %}{% static 'img/glass_bg_auth.png' %}{% endblock %}
+{% block contents %}
+
+<section class="content d-flex justify-content-center align-items-center min-vh-100 w-100">
+    <div class="glass-panel text-center auth-container">
+        <h2 class="page-title text-success"><i class="bi bi-person-circle me-2"></i> User Login</h2>
+        
+        <form action="{% url 'UserLoginCheck' %}" method="POST" class="mt-4 text-start">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="loginid" class="form-label">Login ID</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-success text-success"><i class="bi bi-person"></i></span>
+                    <input type="text" class="form-control form-control-glass border-success" name="loginid" id="loginid" required placeholder="Enter Login ID">
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <label for="pswd" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-success text-success"><i class="bi bi-lock"></i></span>
+                    <input type="password" class="form-control form-control-glass border-success" name="pswd" id="pswd" required placeholder="Enter Password">
+                </div>
+            </div>
+            
+            <div class="d-grid mb-3">
+                <button class="btn btn-glass btn-lg" type="submit">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Login
+                </button>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="{% url 'forgot_password' %}" class="text-success text-decoration-none hover-underline">Forgot Password?</a>
+            </div>
+            
+            {% if messages %}
+            <div class="mt-4">
+                {% for message in messages %}
+                <div class="alert alert-glass alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-info-circle me-2"></i> {{ message }}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</section>
+
+{% endblock %}

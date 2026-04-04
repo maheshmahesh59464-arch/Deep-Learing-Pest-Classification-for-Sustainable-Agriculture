@@ -1,0 +1,47 @@
+{% extends 'admins/adminbase.html' %}
+{% load static %}
+{% block bg_image %}{% static 'img/bg2.jpg' %}{% endblock %}
+{% block contents %}
+
+<div class="container-fluid py-4">
+    <div class="glass-panel text-center max-w-4xl mx-auto shadow-lg" style="margin-top: 50px;">
+        <h2 class="page-title text-success mb-4 border-bottom border-success pb-3 d-inline-block">
+            <i class="bi bi-person-workspace me-2"></i> Welcome to PestClassify Admin Panel
+        </h2>
+        
+        <p class="lead text-light mb-4" style="font-size: 1.15rem; line-height: 1.8;">
+            As an administrator of PestClassify, you play a critical role in managing pest detection data,
+            reviewing classification results, and maintaining the accuracy and reliability of the pest identification system.
+        </p>
+        
+        <p class="text-light opacity-75" style="font-size: 1.05rem; line-height: 1.6;">
+            From monitoring user submissions to managing records of classified pests,
+            use the tools provided in the navigation sidebar to effectively oversee and operate the backend of this intelligent classification platform.
+        </p>
+
+        <div class="row mt-5">
+            <div class="col-md-6 mb-3">
+                <div class="card glass-panel h-100 border-success border-opacity-50" style="background: rgba(40, 167, 69, 0.1);">
+                    <div class="card-body">
+                        <i class="bi bi-people-fill text-success" style="font-size: 2.5rem;"></i>
+                        <h4 class="mt-3 text-light">User Management</h4>
+                        <p class="small text-light opacity-75">Review, activate, and manage user accounts securely.</p>
+                        <a href="{% url 'RegisterUsersView' %}" class="btn btn-outline-success mt-2">Manage Users</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card glass-panel h-100 border-warning border-opacity-50" style="background: rgba(255, 193, 7, 0.1);">
+                    <div class="card-body">
+                        <i class="bi bi-clipboard2-data text-warning" style="font-size: 2.5rem;"></i>
+                        <h4 class="mt-3 text-light">System Logs</h4>
+                        <p class="small text-light opacity-75">View recent classification activities and server logs.</p>
+                        <div class="btn btn-outline-warning mt-2 disabled">Coming Soon</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

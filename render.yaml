@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: pest-classifier
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn Pest_Classifier.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0 # Standard stable Python version on Render

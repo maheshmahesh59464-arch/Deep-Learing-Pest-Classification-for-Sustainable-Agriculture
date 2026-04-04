@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block bg_image %}{% static 'img/bg1.jpg' %}{% endblock %}
+{% block contents %} 
+
+<div class="container d-flex flex-column align-items-center justify-content-center h-100">
+    <div class="text-center mb-5">
+        <h1 class="page-title text-uppercase" style="color: #a7f3d0; text-shadow: 0 4px 15px rgba(0,0,0,0.5); font-size: 3.5rem;">
+            Pest Classifier System
+        </h1>
+    </div>
+
+    <div class="glass-panel text-center" style="max-width: 800px;">
+        <i class="bi bi-search text-success mb-3" style="font-size: 3rem; display: block;"></i>
+        <p class="lead mb-4" style="font-size: 1.25rem; line-height: 1.8; color: #f3f4f6;">
+            Identify and classify crop pests using advanced machine learning models trained on extensive pest image datasets. 
+            This system empowers farmers and researchers with early pest detection, enabling timely intervention and sustainable crop management.
+        </p>
+        <a href="{% url 'UserLogin' %}" class="btn btn-glass btn-lg mt-3 px-5 py-3">
+            <i class="bi bi-play-circle me-2"></i> Classify Now
+        </a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block bg_image %}{% static 'img/glass_bg_auth.png' %}{% endblock %}
+{% block contents %}
+
+<section class="content d-flex justify-content-center align-items-center min-vh-100 w-100">
+    <div class="glass-panel text-center auth-container">
+        <h2 class="page-title text-info"><i class="bi bi-shield-check me-2"></i> Verify OTP</h2>
+        <p class="text-light opacity-75 mb-4">Please enter the One-Time Password sent to your email.</p>
+        
+        <form method="POST" class="mt-4 text-start">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="otp" class="form-label">One-Time Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-info text-info"><i class="bi bi-123"></i></span>
+                    <input type="text" class="form-control form-control-glass border-info text-center fs-4 letter-spacing" name="otp" id="otp" required placeholder="• • • • • •" autocomplete="off" maxlength="6">
+                </div>
+            </div>
+            
+            <div class="d-grid mb-3">
+                <button class="btn btn-glass btn-lg text-info hover-scale border-info" type="submit">
+                    <i class="bi bi-check-circle me-2"></i> Verify OTP
+                </button>
+            </div>
+            
+            {% if messages %}
+            <div class="mt-4">
+                {% for message in messages %}
+                <div class="alert alert-glass alert-danger alert-dismissible fade show text-danger border-danger" role="alert">
+                    <i class="bi bi-x-circle me-2"></i> {{ message }}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</section>
+
+<style>
+    .letter-spacing {
+        letter-spacing: 0.5rem;
+    }
+</style>
+
+{% endblock %}
