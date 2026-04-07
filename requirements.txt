@@ -1,5 +1,5 @@
 Django==5.2
-matplotlib==3.10.1
+matplotlib==3.7.3
 pillow==11.2.1
 torch==2.6.0
 torchvision==0.21.0
